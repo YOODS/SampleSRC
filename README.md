@@ -15,7 +15,7 @@ RoVI に準拠
 ## インストール
 
 事前に、ROS、RoVIの環境を構築してください。
-詳細は、 https://github.com/YOODS/rovi を参照
+（https://github.com/YOODS/rovi を参照）
 
 RoVI のソースディレクトリに、本 Repository のソースを checkout します。
 ~~~
@@ -36,7 +36,7 @@ roslaunch rovi ycam3sxga.launch
 roslaunch rovi ycam3vga.launch
 ~~~
 
-2, Rviz の起動
+2. Rviz の起動
 
 ~~~
 roslaunch rovi viewer.launch
