@@ -1,0 +1,5 @@
+<launch>
+  <rosparam command="load" file="$(find rovi)/rovi_test/rovi_bin.yaml" />
+  <node pkg="rovi" type="rovi_bin.py" name="rovi_bin" output="screen" >
+  </node>
+</launch>

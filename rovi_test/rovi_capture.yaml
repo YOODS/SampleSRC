@@ -1,0 +1,6 @@
+rovi_test:
+  pshift: On
+  nf: On
+  mesh: 1
+  nfmin: 6
+  nfrad: 5

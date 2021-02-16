@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="rviz" type="rviz" name="" args="-d $(find rovi)/rovi_test/rovi_test.rviz" />
+  <node pkg="rovi" type="floats2pc" name="" args="camera">
+    <remap from="floats" to="/rovi_test/ps_floats" />
+    <remap from="pc" to="/rovi_test/ps_pc" />
+  </node>
+</launch>
