@@ -61,14 +61,6 @@ def cb_ps(msg):
     out_floats = np2F(pc)
     pub_nf.publish(out_floats)
 
-def capture():
-  global count
-  count = count + 1
-  msg = Bool()
-  msg.data = True
-  rospy.loginfo("[%d] capture request", count)
-  pub_capture.publish(msg)
-
 if __name__=="__main__":
   global nfparam
   nfparam = dict()
@@ -84,5 +76,9 @@ if __name__=="__main__":
   r = rospy.Rate(0.1) # 10s
   while not rospy.is_shutdown():
     if rospy.get_param("/rovi_test/pshift"):
-      capture()
+      count = count + 1
+      msg = Bool()
+      msg.data = True
+      rospy.loginfo("[%d] capture request", count)
+      pub_capture.publish(msg)
     r.sleep()
