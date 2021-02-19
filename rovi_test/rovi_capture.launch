@@ -1,5 +1,5 @@
 <launch>
-  <rosparam command="load" file="$(find rovi)/rovi_test/rovi_capture.yaml" />
+  <rosparam command="load" file="$(find rovi)/SampleSRC/rovi_test/rovi_capture.yaml" />
   <node pkg="rovi" type="rovi_capture.py" name="rovi_capture" output="screen">
   </node>
 </launch>
