@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import roslib
 import rospy
@@ -21,22 +21,21 @@ def voxel(data):
     return data
   d = np.asarray(data).astype(np.float32)
   pc = o3d.geometry.PointCloud()
-  pc.points = o3d.Vector3dVector(d)
-  dwpc = o3d.geometry.voxel_down_sample(pc,voxel_size=mesh)
+  pc.points = o3d.utility.Vector3dVector(d)
+  dwpc = o3d.geometry.PointCloud.voxel_down_sample(pc,voxel_size=mesh)
   return np.reshape(np.asarray(dwpc.points),(-1, 3))
 
 def nf(data):
   d = np.asarray(data).astype(np.float32)
   pc = o3d.geometry.PointCloud()
-  pc.points = o3d.Vector3dVector(d)
+  pc.points = o3d.utility.Vector3dVector(d)
   nfmin = nfparam['nfmin']
   if nfmin <= 0:
     nfmin = 1
   nfrad = nfparam['nfrad']
-  cl, ind = o3d.geometry.radius_outlier_removal(pc,
-                                                nb_points = nfmin,
-                                                radius = nfrad)
-  dwpc = o3d.geometry.select_down_sample(pc, ind)
+  cl, ind = pc.remove_radius_outlier(nb_points = nfmin,
+                                     radius = nfrad)
+  dwpc = o3d.geometry.PointCloud.select_by_index(pc, ind)
   return np.reshape(np.asarray(dwpc.points),(-1, 3))
 
 def get_nfparam():

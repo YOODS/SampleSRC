@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import roslib
 import rospy
@@ -11,14 +11,14 @@ def cb_binary(msg):
   try:
     orig = bridge.imgmsg_to_cv2(msg, "mono8")
   except CvBridgeError as e:
-    print 'cvbridge exception: ',e
+    print('cvbridge exception: ',e)
   else:
     thresh = rospy.get_param("/rovi_test/binthresh")
     ret, binimg = cv2.threshold(orig, thresh, 255, cv2.THRESH_BINARY)
     try:
       imgmsg = bridge.cv2_to_imgmsg(binimg, "mono8")
     except CvBridgeError as e:
-      print 'cvbridge exception: ',e
+      print('cvbridge exception: ',e)
     else:
       pub_binary.publish(imgmsg)
 
